@@ -125,6 +125,32 @@ code {
   50% { transform: scale(1.08); }
 }
 
+.glossary-subtitle { color: #b9c8f4; margin-bottom: 0.5rem; }
+
+.glossary-search {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #2e3a6d;
+  background: #0b1020;
+  color: #eef4ff;
+  margin-bottom: 0.8rem;
+}
+
+.glossary-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.glossary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem;
+  border-left: 3px solid #7dd3fc;
+  padding-left: 0.8rem;
+}
+
+.glossary-item strong { color: #7dd3fc; }
+.glossary-source { font-size: 0.75rem; color: #6b7280; }
+
 button {
   margin-top: 0.8rem;
   border: 0;

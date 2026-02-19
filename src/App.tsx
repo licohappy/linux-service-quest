@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { MISSIONS } from './missions'
+import Glossary from './Glossary'
 import './App.css'
 
 const STORAGE_KEY = 'linux-service-quest-progress-v1'
@@ -18,6 +19,7 @@ function App() {
   const [feedback, setFeedback] = useState<string>('')
   const [hadWrong, setHadWrong] = useState(false)
   const [levelUp, setLevelUp] = useState<number | null>(null)
+  const [showGlossary, setShowGlossary] = useState(false)
 
   const mission = MISSIONS[current]
   const progress = useMemo(() => Math.round((current / MISSIONS.length) * 100), [current])
@@ -88,7 +90,15 @@ function App() {
         </div>
         <div>Progress: {progress}%</div>
         <button onClick={reset} className="reset">Reset</button>
+        <button onClick={() => setShowGlossary(!showGlossary)} className="reset">
+          {showGlossary ? 'Missions' : '📖 Glossary'}
+        </button>
       </section>
+
+      {showGlossary ? (
+        <Glossary completed={current} onBack={() => setShowGlossary(false)} />
+      ) : (
+      <>
 
       {!mission ? (
         <section className="card done">
@@ -142,6 +152,8 @@ function App() {
             {feedback && <p className="feedback">{feedback}</p>}
           </div>
         </section>
+      )}
+      </>
       )}
     </main>
   )
