@@ -3,6 +3,7 @@ import { MISSIONS } from './missions'
 import Glossary from './Glossary'
 import ReviewMode, { addMistake, clearMistakes, getMistakes } from './ReviewMode'
 import ScenarioMode from './ScenarioMode'
+import Welcome from './Welcome'
 import './App.css'
 
 const STORAGE_KEY = 'linux-service-quest-progress-v1'
@@ -24,6 +25,7 @@ function App() {
   const [showGlossary, setShowGlossary] = useState(false)
   const [showReview, setShowReview] = useState(false)
   const [showScenarios, setShowScenarios] = useState(false)
+  const [started, setStarted] = useState(() => !!localStorage.getItem(STORAGE_KEY))
 
   const mission = MISSIONS[current]
   const progress = useMemo(() => Math.round((current / MISSIONS.length) * 100), [current])
@@ -75,7 +77,16 @@ function App() {
     setHadWrong(false)
     setShowReview(false)
     setShowGlossary(false)
+    setStarted(false)
     setFeedback('Progress reset. You are back to Mission 1.')
+  }
+
+  if (!started) {
+    return (
+      <main className="app">
+        <Welcome onStart={() => { setStarted(true); localStorage.setItem(STORAGE_KEY, '0') }} />
+      </main>
+    )
   }
 
   return (
