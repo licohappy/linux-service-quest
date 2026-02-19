@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# Linux Service Quest 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, game-style website to learn **Linux service management** across major distros — with IT/English term explanations built in.
 
-Currently, two official plugins are available:
+**Live site:** https://licohappy.github.io/linux-service-quest/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## What you'll learn
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Managing services with `systemctl` (start, stop, restart, enable, disable, mask, reload...)
+- Reading logs with `journalctl`
+- Differences between **Ubuntu/Debian**, **Fedora/RHEL**, **Arch**, and **openSUSE**
+- Real IT English vocabulary in context
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## How to use the website
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. **Open the site** → https://licohappy.github.io/linux-service-quest/
+2. **Click "▶ Start Playing"** on the welcome screen
+3. Each **mission** has:
+   - A scenario (what's broken / what needs doing)
+   - An IT/English term to learn
+   - A command hint showing the exact command
+   - A **distro comparison** — same task, all 4 distros
+   - A quiz question to check your understanding
+4. Answer correctly → earn **XP**, move to the next mission
+5. Wrong answer → added to your **Review list** (retry later)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Navigation buttons (top bar)
+| Button | What it does |
+|--------|-------------|
+| `📖 Glossary` | All IT/English terms you've unlocked so far |
+| `🔄 Review (N)` | Retry questions you got wrong |
+| `🎭 Scenarios` | Multi-step real-world troubleshooting incidents |
+| `Reset` | Clear all progress and start over |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### XP & Levels
+- Correct answer (first try) → **+100 XP**
+- Correct answer (after a mistake) → **+50 XP**
+- Every **300 XP** = Level up 🎉
+
+### Progress saving
+Your progress is saved automatically in your browser (`localStorage`). No account needed.
+
+---
+
+## Content
+
+- **16 missions** covering core systemctl commands
+- **2 scenarios** (multi-step incident walkthroughs)
+- **4 distros** compared per mission: Ubuntu/Debian, Fedora/RHEL, Arch, openSUSE
+
+---
+
+## Local development
+
+```bash
+git clone https://github.com/licohappy/linux-service-quest.git
+cd linux-service-quest
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Deploys automatically to GitHub Pages on every push to `main`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Made with ❤️ by [Happy](https://github.com/licohappy)
