@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { MISSIONS } from './missions'
 import Glossary from './Glossary'
 import ReviewMode, { addMistake, clearMistakes, getMistakes } from './ReviewMode'
+import ScenarioMode from './ScenarioMode'
 import './App.css'
 
 const STORAGE_KEY = 'linux-service-quest-progress-v1'
@@ -22,6 +23,7 @@ function App() {
   const [levelUp, setLevelUp] = useState<number | null>(null)
   const [showGlossary, setShowGlossary] = useState(false)
   const [showReview, setShowReview] = useState(false)
+  const [showScenarios, setShowScenarios] = useState(false)
 
   const mission = MISSIONS[current]
   const progress = useMemo(() => Math.round((current / MISSIONS.length) * 100), [current])
@@ -100,16 +102,21 @@ function App() {
           {showGlossary ? 'Missions' : '📖 Glossary'}
         </button>
         {getMistakes().length > 0 && (
-          <button onClick={() => { setShowReview(!showReview); setShowGlossary(false) }} className="reset">
+          <button onClick={() => { setShowReview(!showReview); setShowGlossary(false); setShowScenarios(false) }} className="reset">
             {showReview ? 'Missions' : `🔄 Review (${getMistakes().length})`}
           </button>
         )}
+        <button onClick={() => { setShowScenarios(!showScenarios); setShowGlossary(false); setShowReview(false) }} className="reset">
+          {showScenarios ? 'Missions' : '🎭 Scenarios'}
+        </button>
       </section>
 
       {showGlossary ? (
         <Glossary completed={current} onBack={() => setShowGlossary(false)} />
       ) : showReview ? (
         <ReviewMode onBack={() => setShowReview(false)} />
+      ) : showScenarios ? (
+        <ScenarioMode onBack={() => setShowScenarios(false)} />
       ) : (
       <>
 

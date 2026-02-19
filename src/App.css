@@ -196,6 +196,19 @@ code {
 
 .review-count { color: #8b949e; font-size: 0.85rem; }
 
+.scenario-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+.scenario-item {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.scenario-item:hover { border-color: #58a6ff; background: #21262d; }
+.scenario-item strong { color: #58a6ff; font-family: 'Fira Code', monospace; }
+.scenario-distro { font-size: 0.78rem; color: #3fb950; font-family: 'Fira Code', monospace; }
+
 button {
   margin-top: 0.8rem;
   border: 1px solid #30363d;
